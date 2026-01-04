@@ -1553,7 +1553,7 @@ void mt7902_mt76_wcid_cleanup(struct mt7902_mt76_dev *dev, struct mt7902_mt76_wc
 }
 EXPORT_SYMBOL_GPL(mt7902_mt76_wcid_cleanup);
 
-int mt7902_mt76_get_txpower(struct ieee80211_hw *hw, struct ieee80211_vif *vif,
+int mt7902_mt76_get_txpower(struct ieee80211_hw *hw, struct ieee80211_vif *vif, unsigned int link_id,
 		     int *dbm)
 {
 	struct mt7902_mt76_phy *phy = hw->priv;
@@ -1738,7 +1738,7 @@ void mt7902_mt76_sw_scan_complete(struct ieee80211_hw *hw, struct ieee80211_vif 
 }
 EXPORT_SYMBOL_GPL(mt7902_mt76_sw_scan_complete);
 
-int mt7902_mt76_get_antenna(struct ieee80211_hw *hw, u32 *tx_ant, u32 *rx_ant)
+int mt7902_mt76_get_antenna(struct ieee80211_hw *hw, int link_id, u32 *tx_ant, u32 *rx_ant)
 {
 	struct mt7902_mt76_phy *phy = hw->priv;
 	struct mt7902_mt76_dev *dev = phy->dev;

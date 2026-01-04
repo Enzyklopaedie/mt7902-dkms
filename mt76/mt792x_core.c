@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: ISC
 /* Copyright (C) 2023 MediaTek Inc. */
 
+#include <linux/timer.h>
 #include <linux/module.h>
 #include <linux/firmware.h>
 
@@ -244,8 +245,7 @@ EXPORT_SYMBOL_GPL(mt7902_mt792x_tx_worker);
 
 void mt7902_mt792x_roc_timer(struct timer_list *timer)
 {
-	struct mt7902_mt792x_phy *phy = from_timer(phy, timer, roc_timer);
-
+	struct mt7902_mt792x_phy *phy = container_of(timer, struct mt7902_mt792x_phy, roc_timer);
 	ieee80211_queue_work(phy->mt76->hw, &phy->roc_work);
 }
 EXPORT_SYMBOL_GPL(mt7902_mt792x_roc_timer);
@@ -523,7 +523,7 @@ void mt7902_mt792x_sta_statistics(struct ieee80211_hw *hw,
 }
 EXPORT_SYMBOL_GPL(mt7902_mt792x_sta_statistics);
 
-void mt7902_mt792x_set_coverage_class(struct ieee80211_hw *hw, s16 coverage_class)
+void mt7902_mt792x_set_coverage_class(struct ieee80211_hw *hw, int link_id, s16 coverage_class)
 {
 	struct mt7902_mt792x_phy *phy = mt7902_mt792x_hw_phy(hw);
 	struct mt7902_mt792x_dev *dev = phy->dev;

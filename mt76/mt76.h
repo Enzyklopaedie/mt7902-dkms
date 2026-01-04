@@ -1409,8 +1409,7 @@ void mt7902_mt76_sta_pre_rcu_remove(struct ieee80211_hw *hw, struct ieee80211_vi
 
 int mt7902_mt76_get_min_avg_rssi(struct mt7902_mt76_dev *dev, bool ext_phy);
 
-int mt7902_mt76_get_txpower(struct ieee80211_hw *hw, struct ieee80211_vif *vif,
-		     int *dbm);
+int mt7902_mt76_get_txpower(struct ieee80211_hw *hw, struct ieee80211_vif *vif, unsigned int link_id,int *dbm);
 int mt7902_mt76_init_sar_power(struct ieee80211_hw *hw,
 			const struct cfg80211_sar_specs *sar);
 int mt7902_mt76_get_sar_power(struct mt7902_mt76_phy *phy,
@@ -1420,7 +1419,7 @@ int mt7902_mt76_get_sar_power(struct mt7902_mt76_phy *phy,
 void mt7902_mt76_csa_check(struct mt7902_mt76_dev *dev);
 void mt7902_mt76_csa_finish(struct mt7902_mt76_dev *dev);
 
-int mt7902_mt76_get_antenna(struct ieee80211_hw *hw, u32 *tx_ant, u32 *rx_ant);
+int mt7902_mt76_get_antenna(struct ieee80211_hw *hw, int link_id, u32 *tx_ant, u32 *rx_ant);
 int mt7902_mt76_set_tim(struct ieee80211_hw *hw, struct ieee80211_sta *sta, bool set);
 void mt7902_mt76_insert_ccmp_hdr(struct sk_buff *skb, u8 key_id);
 int mt7902_mt76_get_rate(struct mt7902_mt76_dev *dev,

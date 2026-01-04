@@ -941,8 +941,8 @@ mt7902_mt76_dma_init(struct mt7902_mt76_dev *dev,
 {
 	int i;
 
-	init_dummy_netdev(&dev->napi_dev);
-	init_dummy_netdev(&dev->tx_napi_dev);
+	// init_dummy_netdev(&dev->napi_dev);
+	// init_dummy_netdev(&dev->tx_napi_dev);
 	snprintf(dev->napi_dev.name, sizeof(dev->napi_dev.name), "%s",
 		 wiphy_name(dev->hw->wiphy));
 	dev->napi_dev.threaded = 1;
